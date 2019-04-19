@@ -21,7 +21,7 @@ public class GetAnswersDaoImpl implements GetAnswersDao {
 	}
 
 	@Override
-	public void GetAnsByCat(Object object) {
+	public void GetAnsByCat() {
 		// TODO Auto-generated method stub
 		
 	}
