@@ -1,4 +1,4 @@
-package com.QuestionBank.bean;
+package com.QuestionBank.demo.bean;
 
 public class QresponseBean {
 	
