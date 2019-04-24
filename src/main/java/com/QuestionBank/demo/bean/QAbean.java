@@ -21,27 +21,22 @@ public class QAbean {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="qId")
     private Integer id;
 	
-    @ElementCollection(targetClass=String.class)
-    @Column(name="questions")
-	public List<String> question;
+	@XmlElement
+	public String question;
 	
 	@XmlElement
-	 @Column(name="answers")
-	public String answers;
+	 public String answers;
 	
 	@XmlElement
 	public String category;
 	
-	
-
-	public List<String> getQuestion() {
+	public String getQuestions() {
 		return question;
 	}
 
-	public void setQuestion(List<String> question) {
+	public void setQuestions(String question) {
 		this.question = question;
 	}
 
@@ -71,8 +66,9 @@ public class QAbean {
 
 	@Override
 	public String toString() {
-		return "QAbean [question=" + question + ", answers=" + answers + "]";
+		return "QAbean [id=" + id + ", question=" + question + ", answers=" + answers + ", category=" + category + "]";
 	}
+
 	
 	
 
