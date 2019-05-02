@@ -2,14 +2,18 @@ package com.QuestionBank.demo.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.QuestionBank.demo.Service.NullException;
 import com.QuestionBank.demo.Service.QaService;
 import com.QuestionBank.demo.bean.CatBean;
 import com.QuestionBank.demo.bean.QAbean;
@@ -27,12 +31,12 @@ public class QAController {
 	
 	
 
-	@RequestMapping(value="/getAnswers", method = RequestMethod.POST, headers="Accept=application/xml")
+	@RequestMapping(value="/getAnswers", method = RequestMethod.GET, headers="Accept=application/xml")
 	@ResponseBody
-	Qbean getAnswers(@RequestBody QAbean qbean) {
+	Qbean getAnswers(@RequestParam String ques ) throws NullException {
 		
-		Qbean getAns=qaService.getAnswers(qbean);
-		RelatableQuestionList rQlist=qaService.relatableQuestions(qbean);
+		Qbean getAns=qaService.getAnswers(ques);
+		RelatableQuestionList rQlist=qaService.relatableQuestions(ques);
 		getAns.setRelatableQuestionList(rQlist);
 		System.out.println(getAns);
 		return getAns;
@@ -40,11 +44,11 @@ public class QAController {
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.POST, value="/getAnsByCat", headers="Accept=application/xml")
+	@RequestMapping(method = RequestMethod.GET, value="/getAnsByCat", headers="Accept=application/xml")
 	@ResponseBody
-	QbeanList getAnsByCat(@RequestBody QAbean catbean) {
+	QbeanList getAnsByCat(@RequestParam String cat) {
 		
-		QbeanList getqans=qaService.getQanswers(catbean);
+		QbeanList getqans=qaService.getQanswers(cat);
 		System.out.println("getAnsByCat Successfull");
 		return getqans;
 	
